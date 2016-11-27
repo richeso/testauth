@@ -30,11 +30,19 @@ var sha512 = function(password, salt){
 
 function saltHashPassword(userpassword) {
     var salt = genRandomString(16); /** Gives us salt of length 16 */
+    createHashPassword(userpassword,salt);
+}
+
+
+function createHashPassword(userpassword,salt) {
     var passwordData = sha512(userpassword, salt);
-    console.log('UserPassword = '+userpassword);
+    console.log('\nUserPassword = '+userpassword);
     console.log('Passwordhash = '+passwordData.passwordHash);
-    console.log('\nSalt = '+passwordData.salt);
+    console.log('Salt = '+passwordData.salt);
 }
 
 saltHashPassword('MYPASSWORD');
 saltHashPassword('MYPASSWORD');
+
+createHashPassword('MySecretePassword', '755d39248aeab7db');
+createHashPassword('MySecretePassword', '755d39248aeab7db');
