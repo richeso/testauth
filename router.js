@@ -20,14 +20,14 @@ module.exports = function(app){
 
 
     // GET /api/artist/:id
-    app.get('/api/artist/:id', Authentication.SetRealm('artist'), Authentication.BasicAuthentication, function(request, response){
+    app.get('/api/artist/:id', Authentication.SetRealm('artist',request,response), Authentication.BasicAuthentication, function(request, response){
         var id = request.params.id;
         var obj = artists[id - 1]; 
         response.json(obj);
     });
 
-    app.get('/api/other', Authentication.SetRealm('other'), Authentication.BasicAuthentication, function(request, response){
-        respose.json({ message: 'This is the other route '});
+    app.get('/api/other', Authentication.SetRealm('other',request,response), Authentication.BasicAuthentication, function(request, response){
+        response.json({ message: 'This is the other route '});
     });
 
 };
