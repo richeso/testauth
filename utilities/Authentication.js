@@ -3,12 +3,13 @@ var basicAuth = require('basic-auth');
 exports.BasicAuthentication = function(request, response, next) {
 
     function unauthorized(request,response) {
-    	
         response.set('WWW-Authenticate', 'Basic realm=' + request.authRealm);
         return response.send(401);
     };
 
-    console.log("authrealm cookie:" +request.cookies['authrealm']);
+    console.log("==> in Basic Authentication Function: req url="+ request.protocol + "://" + request.get('host') + request.originalUrl);
+    console.log("===> request.authRealm="+request.authRealm)
+    console.log("==> Authrealm cookie:" +request.cookies['authrealm']);
     
     var user = basicAuth(request);
 
@@ -24,7 +25,7 @@ exports.BasicAuthentication = function(request, response, next) {
 	
 };
 
-exports.SetRealm = function(realm,request,response) {
+exports.SetRealm = function(realm) {
     return function(request, response, next) {
     	var realmval = realm || 'default';	
         request.authRealm = realmval;	
