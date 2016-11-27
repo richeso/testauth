@@ -1,0 +1,14 @@
+Creating and Storing password
+=============================
+Take the user password
+Generate a salt(String of random characters)
+Combine the salt with the user entered password
+Hash the combined string with a suitable cryptographic algorithm.
+Store the result as the password and also store the salt along side.
+
+Validating user password
+=========================
+Validate the username and fetch the hashed result and salt from the database
+Combine the user entered password with the salt stored for that user.
+Hash the combined string with the same cryptographic algorithm used at the time of creating user.
+Compare the result with the stored hash.
